@@ -11,4 +11,9 @@ class WorkoutController < ApplicationController
     end
   end
 
+  get '/workouts/:part' do
+    @part = Part.find_by(params[:part])
+    erb :'workouts/show_workout'
+  end
+
 end

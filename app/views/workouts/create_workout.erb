@@ -1,0 +1,15 @@
+<h1> Welcome, <%= @user.name %>!</h1>
+<p> Here you can display your workout: </p>
+
+ <form method="POST" action='/workouts'>
+  <label> What shall you name your custom workout? </label>
+  <input type="text" name="user[workouts][][title]" value="Title:"><br></br>
+  
+  <label> Describe the workout in full! We're talking about reps, sets, names etc. </label>
+  <input type="text" name="user[workouts][][content]" value="Content:"><br></br>
+  
+  <label>What primary body part will this workout? Your choices are: Shoulders, Chest, Arms, Abdominal, Back, Legs (Choose one)</label>
+  <input type="text" name="user[workouts][parts][name]" value="Body Part"><br></br>
+  
+  <input type="submit" value="Submit Workout">
+ </form>
