@@ -1,0 +1,7 @@
+<h1> Here are all the workouts you can choose from Fanatic. Begin your workout at your own risk! </h1>
+  <h2> Workout Fanatics Exercises </h2>
+ <ul>
+    <% @muscles.each do |muscle| %>
+    <li><a href=/workouts/<%= muscle %>> <%= muscle %> </a></li>
+    <% end %>
+</ul>

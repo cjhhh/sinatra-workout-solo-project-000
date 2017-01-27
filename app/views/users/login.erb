@@ -1,0 +1,15 @@
+<h1> Welcome FaithFul Member of Workout Fanatics!! </h1>
+<p> Login to continue into your humble abode of fitness, pursuing that everlasting journey of aesthetics! <p>
+
+  <% if flash.has?(:message) %>
+  <%= flash[:message] %>
+  <% end %>
+
+  <form method="POST" method="/login">
+      <input type="text" placeholder="Username:" name="username"><br></br>
+      <input type="text" placeholder="Passsword:" name="password"><br></br>
+
+      <input type="submit" value="Log In">
+  </form>
+
+  <p>Don't have an account? Bummer. Click <a href="/signup">here</a> to signup!
