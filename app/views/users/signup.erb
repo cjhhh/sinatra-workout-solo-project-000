@@ -1,3 +1,6 @@
+<% if flash.has?(:message) %>
+<%= flash[:message] %>
+<% end %>
 <h1> Welcome to the Signup Page, you are just one step closer to accessing workouts that will leave you pumped all day long!</h1>
 
 <form method="POST" action="/signup">

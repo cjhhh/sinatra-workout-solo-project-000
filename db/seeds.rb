@@ -1,0 +1,6 @@
+Part.create(name: "Shoulders")
+Part.create(name: "Chest")
+Part.create(name: "Arms")
+Part.create(name: "Abdominal")
+Part.create(name: "Back")
+Part.create(name: "Legs")
