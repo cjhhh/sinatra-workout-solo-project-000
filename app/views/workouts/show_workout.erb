@@ -1,1 +1,7 @@
-<h1><%= @part %><h1>
+<% @part.workouts.all.each do |part| %>
+<h1> Title: <%= part.title %><h1>
+<p> Content: <%= part.content %> </p>
+ <% end %>
+
+
+<p>Click <a href="/workouts">here</a> to go back to the workout page.</p>

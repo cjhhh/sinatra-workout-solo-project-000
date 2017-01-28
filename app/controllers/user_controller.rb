@@ -5,7 +5,8 @@ class UserController < ApplicationController
   use Rack::Flash
 
   get '/signup' do
-    erb :'users/signup'
+
+     erb :'users/signup'
   end
 
   get '/login' do
@@ -18,6 +19,9 @@ class UserController < ApplicationController
 
   post '/signup' do
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
+      redirect '/signup'
+    elsif User.find_by(:username => params[:username]) || User.find_by(:email => params[:email])
+      flash[:message] = "That Username or Email is already in use. Please Try again."
       redirect '/signup'
     else
       @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
@@ -40,6 +44,11 @@ class UserController < ApplicationController
       flash[:message] = "We could not verify you in our system. You have entered an incorrect Password or Username. Please sign up to continue or click Login to try again."
       redirect '/signup'
     end
+  end
+
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    erb :'users/show'
   end
 
 

@@ -1,4 +1,6 @@
 require 'pry'
+require 'rack-flash'
+
 class WorkoutController < ApplicationController
 
 
@@ -21,18 +23,25 @@ class WorkoutController < ApplicationController
   end
 
   post '/workouts' do
-    binding.pry
-@workout = current_user.workouts.create(:title => params[:user][:workout][:title], :content => params[:user][:workout][:content])
-
-@workout.parts = current_user.parts.find_by(:name => params[:user][:workout][:parts][:name])
-
-     redirect "/workouts/#{@workout.parts.name}"
+    if params[:user][:workout][:title] == "" || params[:user][:workout][:content] == "" || params[:user][:workout][:parts][:name] == ""
+       flash[:message] = "You have left one of the fields blank, please try again."
+       redirect '/workouts/new'
+    else
+      @workout = current_user.workouts.create(:title => params[:user][:workout][:title], :content => params[:user][:workout][:content])
+      part = Part.find_by(:name => params[:user][:workout][:parts][:name])
+      @workout.parts << part
+    end
+     redirect "/workouts/#{@workout.parts.first.name}"
   end
 
   get '/workouts/:muscle' do
-
-    @part = Part.find_by(:name => params[:muscle])
-    erb :'workouts/show_workout'
+    if logged_in?
+      @part = Part.find_by(:name => params[:muscle])
+      erb :'workouts/show_workout'
+    else
+      flash[:message] = "You cannot view that page until you have logged in. Please login to continue."
+      redirect '/login'
+    end
   end
 
   get '/logout' do
