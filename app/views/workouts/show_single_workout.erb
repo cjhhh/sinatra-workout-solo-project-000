@@ -1,0 +1,12 @@
+<h1> Show Single Workout </h1>
+ <h2> <%= @workout.title %></h2>
+ <p> <%= @workout.content %></p>
+   <br></br>
+<form method="POST" action="/workouts/<%= @workout.id %>/delete">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Workout">
+</form>
+
+<a href="/workout/<%= @workout.id %>/edit"><p>Edit Workout</a></p>
+
+<label><a href="/workouts">Show Workouts!</label>

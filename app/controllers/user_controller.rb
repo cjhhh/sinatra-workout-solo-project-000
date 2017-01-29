@@ -5,7 +5,6 @@ class UserController < ApplicationController
   use Rack::Flash
 
   get '/signup' do
-
      erb :'users/signup'
   end
 
@@ -47,8 +46,12 @@ class UserController < ApplicationController
   end
 
   get '/users/:slug' do
-    @user = User.find_by_slug(params[:slug])
     erb :'users/show'
+  end
+
+  get '/logout' do
+    session.clear
+    redirect '/'
   end
 
 

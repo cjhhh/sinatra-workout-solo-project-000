@@ -1,8 +1,9 @@
 <h1> Hello <%= current_user.username.capitalize %> here are your workouts: </h1>
 
  <% current_user.workouts.all.each do |workout| %>
-   <h1> <%= workout.title %> </h1>
+   <h1><a href="/workout/<%= workout.id %>"><%= workout.title %></a></h1>
    <p> <%= workout.content %> </p>
   <% end %>
+
 
   <button type="button"><a href="/logout">Logout<a></button>

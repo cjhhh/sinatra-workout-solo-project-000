@@ -44,10 +44,42 @@ class WorkoutController < ApplicationController
     end
   end
 
-  get '/logout' do
-    session.clear
-    redirect '/'
+  get '/workout/:id' do
+    @workout = Workout.find(params[:id])
+    erb :'/workouts/show_single_workout'
   end
+
+  get '/workout/:id/edit' do
+    if logged_in?
+      @workout = Workout.find(params[:id])
+      @workout.user_id == current_user.id
+      erb :'/workouts/edit_workout'
+    else
+      redirect '/login'
+    end
+  end
+
+  patch '/workouts/:id' do
+    if params[:title] == "" || params[:content] == ""
+      redirect "/tweets/#{params[:id]}/edit"
+    else
+      @workout = Workout.find(params[:id])
+      @workout.title = params[:title]
+      @workout.content = params[:content]
+      @workout.save
+      redirect "/workout/#{@workout.id}"
+    end
+  end
+
+  delete '/workouts/:id/delete' do
+    @workout = Workout.find(params[:id])
+    if logged_in? && current_user.id ==  @workout.user_id
+      @workout.delete
+      redirect "/users/#{current_user.username}"
+    end
+  end
+
+
 
 
 end
