@@ -10,7 +10,7 @@
   <input type="text" name="user[workout][title]" placeholder="Title:"><br></br>
 
   <label> Describe the workout in full! We're talking about reps, sets, names etc. </label>
-  <input type="text" name="user[workout][content]" placeholder="Content:"><br></br>
+  <textarea type="text" name="user[workout][content]" placeholder="Content:"></textarea><br></br>
 
   <label>What primary body part will this workout?</label>
   <% Part.all.each do |p| %>

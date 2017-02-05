@@ -61,7 +61,7 @@ class WorkoutController < ApplicationController
 
   patch '/workouts/:id' do
     if params[:title] == "" || params[:content] == ""
-      redirect "/tweets/#{params[:id]}/edit"
+      redirect "/workout/#{params[:id]}/edit"
     else
       @workout = Workout.find(params[:id])
       @workout.title = params[:title]

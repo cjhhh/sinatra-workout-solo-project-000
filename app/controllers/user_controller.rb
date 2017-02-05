@@ -40,12 +40,12 @@ class UserController < ApplicationController
       session[:user_id] = @user.id
       redirect '/workouts'
     else
-      flash[:message] = "We could not verify you in our system. You have entered an incorrect Password or Username. Please sign up to continue or click Login to try again."
+      flash[:message] = "We could not verify you in our system. You have entered an incorrect Password or Username. Please sign up to continue or click the link at the bottom to try again."
       redirect '/signup'
     end
   end
 
-  get '/users/:slug' do
+  get "/users/:slug" do
     erb :'users/show'
   end
 
